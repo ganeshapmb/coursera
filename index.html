@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="LunchCheck">
+<head>
+	<title>Lunch Checker</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+    <style type="text/css">
+        input.ng-invalid {
+            border-color: red;
+        }
+        input.ng-valid {
+            border-color: green;
+        }
+    </style>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="container" ng-controller="LunchCheckController">
+     <h1>Lunch Checker</h1>
+   
+     <form name="studentForm">
+         <div class="form-group" >
+             <input name="brunch" id="lunch-menu" type="text" ng-model="brunch"  
+             placeholder="list comma separated dishes you usually have for lunch"
+             class="form-control" required="">
+
+            <!-- Click on textbox is necessary -->
+
+             <!-- WE can disabled button if user type space or don't type anything and try to click. Disabled the button till user enter and word by adding in button ng-disabled="studentForm.brunch.$invalid" and type error will also not come-->
+
+             <!-- U consider a empty item -->
+         </div>
+            
+         <div class="form-group">
+             <button class="btn btn-primary" ng-click="cal();">Check If Too Much</button>
+             <!-- <button ng-disabled="studentForm.brunch.$invalid" class="btn btn-primary" ng-click="cal();">Check If Too Much</button> -->
+         </div>
+     
+         <div class="form-group message" >
+            
+            
+            <span style="color: red" ng-show="studentForm.brunch.$touched && studentForm.brunch.$error.required">
+                 Please enter data first
+             </span>
+
+
+             
+            <span style="color: green">
+           <!-- Your message can go here. -->{{text}}
+       </span>
+         </div>
+   </div>
+</form>
+</body>
+</html>
