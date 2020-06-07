@@ -35,9 +35,9 @@
 
     var items=[{name: "cookies", quantity: 10},
     {name: "crunchies", quantity: 15},
-    {name: "chips", quantity: 5},
-    {name: "biscuits", quantity: 5},
-    {name: "chocolate cookies", quantity: 10}];
+    {name: "Oats", quantity: 5},
+    {name: "Quinoa", quantity: 5},
+    {name: "Peanut Butter", quantity: 10}];
 
     service.getitems=function () {
     return items;
