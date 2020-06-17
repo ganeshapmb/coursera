@@ -1,70 +1,95 @@
-(
-  function () {
-    'use strict'
+(function(){
+  'use strict';
+
+angular.module('NarrowItDownApp', [])
+.controller('NarrowItDownController', NarrowItDownController)
+.service('MenuSearchService', MenuSearchService)
+.directive("foundItems", foundItemsDirective);
 
 
-    angular.module('myapp',[])
-    .controller('mycontroller',mycontroller)
-    .controller('mycontroller2',mycontroller2)
-    .service('myservice',myservice);
+function foundItemsDirective() {
+  var ddo = {
+    templateUrl: 'menuList.html',
+  scope: {
+      found: '<',
+      error: '<',
+      onRemove: '&'
+    },
+    controller: MenuItemsDirectiveController,
+    controllerAs: 'narrow',
+    bindToController: true,
+  };
 
-    mycontroller.$inject=['myservice'];
-    function mycontroller(myservice) {
-      var list1= this;
-
-      list1.items=myservice.getitems();
+  return ddo;
+}
 
 
-      list1.itembought=function ($index,name,quantity) {
-        myservice.itembought($index,name,quantity);
+function MenuItemsDirectiveController(){
+  var narrow = this;
+
+
+}
+
+NarrowItDownController.$inject['MenuSearchService'];
+function NarrowItDownController(MenuSearchService){
+  var narrow = this; 
+
+  narrow.searchTerm = "";
+  narrow.found=[];
+  narrow.error=false;
+  narrow.findSearchItem = function(){
+
+    MenuSearchService.getMatchedMenuItems(narrow.searchTerm).then(function(response){
+      if(narrow.searchTerm.length==0 || response.length==0){
+        narrow.error=true;
+        narrow.found=[];
       }
+      else{
+        narrow.error=false;
+        narrow.found=response;      
+      }
+      console.log(narrow.found);
 
+    });
+    
   }
 
-  mycontroller2.$inject=['myservice'];
-  function mycontroller2(myservice) {
-    var list2=this;
-    list2.boughtitems=myservice.getboughtitems();
-
+  narrow.removeItems = function(itemIndex){
+    narrow.found.splice(itemIndex, 1);
+    if(narrow.found.length==0){
+      narrow.error = true;
     }
-
-  function myservice()
-  {
-    var service=this;
-
-
-    var items=[{name: "cookies", quantity: 10},
-    {name: "crunchies", quantity: 15},
-    {name: "Oats", quantity: 5},
-    {name: "Quinoa", quantity: 5},
-    {name: "Peanut Butter", quantity: 10}];
-
-    service.getitems=function () {
-    return items;
-  }
-
-    var boughtitems=[];
-    service.getboughtitems=function () {
-    return boughtitems;
-    }
-
-
-
-    service.itembought=function ($index,name,quantity) {
-    var item={name: name, quantity: quantity};
-
-    boughtitems.push(item);
-    items.splice($index,1);
-
-  }
-
-  service.getboughtitems=function () {
-  return boughtitems;
-  }
-  service.getitems=function () {
-  return items;
   }
 
 }
+
+
+MenuSearchService.$inject['$http'];
+function MenuSearchService($http){
+  var service = this;
+
+  service.getMatchedMenuItems= function(searchTerm){
+
+  return $http({
+        method: "GET",
+        url: ('https://davids-restaurant.herokuapp.com/menu_items.json')
+      })
+      .then(function (result) {
+
+          // process result and only keep items that match
+
+          var foundItems = [];
+          for(var i=0; i<result.data.menu_items.length; i++){
+            var itemdesc = result.data.menu_items[i].description;
+            if(itemdesc.toLowerCase().indexOf(searchTerm)!=-1){
+              foundItems.push(result.data.menu_items[i]);
+            }
+          }
+
+          //return processed items
+          return foundItems;
+  });
+
   }
-)();
+}
+})();
