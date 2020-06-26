@@ -1,0 +1,9 @@
+<ul id="clist">
+  <li ng-repeat="category in $ctrl.clist">
+  	<div id="category-content">
+  	<a ui-sref = "itemsList({shortname: category.short_name})">{{category.name}}</a>
+  	<p ng-if="category.special_instructions.length" id="inst">Special Instructions: <span>{{category.special_instructions}}</span> </p>
+  </div>
+  </li>
+</ul>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
+  <head>
+    -<meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <title>Restaurant Menu</title>
+    <style>
+        li[ui-sref]:hover{
+            cursor: pointer;
+            color: maroon;
+        }
+    </style>
+  </head>
+  <body>
+
+    <ui-view></ui-view>
+
+    <!-- Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/Menu/menuapp.module.js"></script>
+    <script src="src/Data/data.module.js"></script>
+
+
+    <!-- Routes -->
+    <script src="src/routes.js"></script>
+
+    <script src="src/Data/categories.controller.js"></script>
+    <script src="src/Data/items.controller.js"></script>
+    <script src="src/Data/items.component.js"></script>
+    <script src="src/Data/menudata.service.js"></script>
+    <script src="src/Data/categories.component.js"></script>
+
+
+
+
+
+  </body>
+</html>
