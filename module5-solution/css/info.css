@@ -1,0 +1,56 @@
+#white{
+	color: white;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid white;
+	width: 50%;
+
+}
+#infodiv{
+	width: 50%;
+	margin: auto;
+}
+table{
+	margin: auto;
+	margin-top: 30px;
+}
+#left{
+	font-weight: bold;
+	font-size: 1.4em;
+	padding: 20px;
+	color: #ECAF18;
+}
+#right{
+	font-weight: bold;
+	padding: 20px;
+}
+.dish{
+	text-align: center;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+#dish-title{
+	font-weight: bold;
+	font-size: 1.4em;
+	padding: 0px;
+	color: #ECAF18;
+}
+#name{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+#desc{
+	font-size: 0.9em;
+}
+#signup-msg{
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+#signup-msg button{
+	background-color: #5C9BE1;
+	font-size: 0.7em;
+	padding: 10px;
+}

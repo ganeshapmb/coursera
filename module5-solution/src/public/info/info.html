@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="css/info.css">
+<h2 id="white">Registered Information</h2>
+
+<div class="row" ng-controller="InfoController as infoCtrl">
+<div ng-if="infoCtrl.signin">
+<div id="infodiv" class="col-md-6">
+	<table>
+		<tr>
+			<td id="left">First Name: </td>
+			<td id="right">{{infoCtrl.user.fname}}</td>
+		</tr>
+		<tr>
+			<td id="left">Last Name: </td>
+			<td id="right">{{infoCtrl.user.lname}}</td>
+		</tr>
+		<tr>
+			<td id="left">Email: </td>
+			<td id="right">{{infoCtrl.user.email}}</td>
+		</tr>
+		<tr>
+			<td id="left">Phone Number: </td>
+			<td id="right">{{infoCtrl.user.phone}}</td>
+		</tr>
+	</table>
+	
+	
+</div>
+<div class="dish" class="col-md-6">
+		<p id="dish-title">Favourite Dish</p>
+		<p id="name">{{infoCtrl.user.favdishinfo.short_name}} - {{infoCtrl.user.favdishinfo.name}}</p>
+		<p id="desc">{{infoCtrl.user.favdishinfo.description}}</p>
+		<img ng-src="{{infoCtrl.basepath}}/images/{{infoCtrl.user.favdishinfo.short_name}}.jpg" width="400px" height="200px">
+</div>
+</div>
+
+<div ng-if="!(infoCtrl.signin)">
+	<p id="signup-msg"> Not Signed Up Yet. <span><button ui-sref="public.signup">Sign Up Now!</button></span></p>
+</div>
+</div>
